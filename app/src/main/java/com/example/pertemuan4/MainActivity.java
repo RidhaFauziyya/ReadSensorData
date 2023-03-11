@@ -18,10 +18,10 @@ import java.util.List;
 //Agar apabila terdapat sensor yang berubah, akan memberi informasi update
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    //Untuk mengatur sensor siperlukan sensor manager
+    //Untuk mengatur sensor diperlukan sensor manager
     private SensorManager mSensorManager;
 
-    //Membuat variabel dengan tipe sensor untuk menampilkan data sensor light dan proximity
+    //Membuat variabel dengan tipe sensor untuk menampilkan data sensor
     private Sensor mSensorLight;
     private Sensor mSensorProximity;
     private Sensor mSensorAmbient;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Membuat iterasi untuk memasukkan sensor data ke dalam list
         for (Sensor currenSensor : sensorList){
             sensorText.append(currenSensor.getName())
-                    .append(System.getProperty("line.separator"));
+                    .append(System.getProperty("line.separator")); //Memberikan efek enter untuk setiap sensor
         }
 
         //Untuk menampilkan pada aplikasi, maka list ditampilkan pada text view
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    //Membuat fungsi baru untuk mendaftarkan sensor yang akan digunakna pada activity
+    //Membuat fungsi baru untuk mendaftarkan sensor yang akan digunakan pada activity
     public void onStart() {
         super.onStart();
         //Untuk memberi informasi bahwa sensor di update
@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if(mSensorPressure!= null){
             mSensorManager.registerListener(this, mSensorPressure,
                     SensorManager.SENSOR_DELAY_NORMAL);
-        }if(mSensorHumidity != null){
+        }
+        if(mSensorHumidity != null){
             mSensorManager.registerListener(this, mSensorHumidity,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -146,19 +147,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 break;
             case Sensor.TYPE_PROXIMITY:
                 mTextSensorProximity.setText(
-                        String.format("Light sensor : %1$.2f", currentValue));
+                        String.format("Proximity sensor : %1$.2f", currentValue));
                 break;
             case Sensor.TYPE_AMBIENT_TEMPERATURE:
                 mTextSensorAmbient.setText(
-                        String.format("Light sensor : %1$.2f", currentValue));
+                        String.format("Ambient sensor : %1$.2f", currentValue));
                 break;
             case Sensor.TYPE_PRESSURE:
                 mTextSensorPressure.setText(
-                        String.format("Light sensor : %1$.2f", currentValue));
+                        String.format("Pressure sensor : %1$.2f", currentValue));
                 break;
             case Sensor.TYPE_RELATIVE_HUMIDITY:
                 mTextSensorHumidity.setText(
-                        String.format("Light sensor : %1$.2f", currentValue));
+                        String.format("Humidity sensor : %1$.2f", currentValue));
                 break;
             default:
         }
